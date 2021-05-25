@@ -15,20 +15,22 @@
 <body>
 <h2>Edit meal</h2>
 
-<form method="POST" action='MealServlet' name="frmAddMeal">
+<form method="POST" name="frmAddMeal">
+    <input type="hidden" readonly="readonly" name="mealId"
+                     value="<c:out value="${meal.id}" />"/> <br/>
 
     DateTime : <input type="text" name="date"
                       value="<c:out value="${meal.formattedDateTime}" />"/> <br/>
 
-    Description : <input type="text" readonly="readonly" name="description"
+    Description : <input type="text" name="description"
                          value="<c:out value="${meal.description}" />"/> <br/>
 
-    Calories : <input type="text" readonly="readonly" name="calories"
+    Calories : <input type="text" name="calories"
                       value="<c:out value="${meal.calories}" />"/> <br/>
 
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save"/>
     <button onclick="window.history.back()">Cancel</button>
-    <a href="/meals">Cancel</a>
+
 </form>
 
 </body>

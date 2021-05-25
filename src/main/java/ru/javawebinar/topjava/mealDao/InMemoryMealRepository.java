@@ -7,7 +7,7 @@ import ru.javawebinar.topjava.util.MealsUtil;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MealDaoInMem implements MealBaseDao {
+public class InMemoryMealRepository implements MealRepository {
     private static final AtomicInteger counter = new AtomicInteger(MealsUtil.meals.size());
 
     @Override
@@ -29,12 +29,15 @@ public class MealDaoInMem implements MealBaseDao {
     @Override
     public boolean update(int id, Meal meal) {
         Meal mealToBeUpdated = getById(id);
+
         if (mealToBeUpdated == null) {
             return false;
         }
+
         mealToBeUpdated.setDescription(meal.getDescription());
         mealToBeUpdated.setDateTime(meal.getDateTime());
         mealToBeUpdated.setCalories(meal.getCalories());
+
         return true;
     }
 

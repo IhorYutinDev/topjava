@@ -5,7 +5,7 @@ import ru.javawebinar.topjava.model.MealTo;
 
 import java.util.List;
 
-public interface MealBaseDao {
+public interface MealRepository {
     boolean delete(int id);
     List<MealTo> getAllMealTo();
     void add(Meal meal);

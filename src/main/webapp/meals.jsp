@@ -13,31 +13,37 @@
     <title>Meals</title>
 </head>
 <body>
-    <h2>Meals</h2>
+<h2>Meals</h2>
 
-    <table border=1>
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Calories</th>
-            <th></th>
-            <th></th>
+
+<button onclick="window.location='meals?action=add'">Add meal</button>
+
+<table border=1>
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Calories</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${meals}" var="meal">
+        <tr style="color:${meal.excess ? 'red' : 'green'}">
+            <td><c:out value="${meal.formattedDateTime}"/></td>
+            <td><c:out value="${meal.description}"/></td>
+            <td><c:out value="${meal.calories}"/></td>
+            <td><a href="meals?action=edit&mealId=<c:out value="${meal.id}"/>">Update</a></td>
+            <td><a href="meals?action=delete&mealId=<c:out value="${meal.id}"/>">Delete</a></td>
         </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${meals}" var="meal">
-            <tr style="color:${meal.excess ? 'red' : 'green'}">
-                <td><c:out value="${meal.formattedDateTime}" /></td>
-                <td><c:out value="${meal.description}" /></td>
-                <td><c:out value="${meal.calories}" /></td>
-                <td><a href="meals?action=edit&mealId=<c:out value="${meal.id}"/>">Update</a></td>
-                <td><a href="meals?action=delete&mealId=<c:out value="${meal.id}"/>">Delete</a></td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+    </c:forEach>
+    </tbody>
+</table>
+
+
+
+
+
 </body>
-
-
 </html>
