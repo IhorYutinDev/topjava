@@ -13,11 +13,11 @@
     <title>Meal</title>
 </head>
 <body>
-<h2>Edit meal</h2>
+<h2><c:out value="${title}"/></h2>
 
-<form method="POST" name="frmAddMeal">
+<form method="POST" action="meals" name="frmAddMeal">
     <input type="hidden" readonly="readonly" name="mealId"
-                     value="<c:out value="${meal.id}" />"/> <br/>
+           value="<c:out value="${meal.id}" />"/> <br/>
 
     DateTime : <input type="text" name="date"
                       value="<c:out value="${meal.formattedDateTime}" />"/> <br/>
@@ -30,8 +30,6 @@
 
     <input type="submit" value="Save"/>
     <button onclick="window.history.back()">Cancel</button>
-
 </form>
-
 </body>
 </html>

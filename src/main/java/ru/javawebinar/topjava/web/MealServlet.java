@@ -15,9 +15,14 @@ public class MealServlet extends HttpServlet {
     private MealRepository mealRepository;
     private static String INSERT_OR_EDIT = "/meal.jsp";
     private static String LIST_MEALS = "/meals.jsp";
+    private String title = "Edit meal";
 
     public MealServlet() {
         mealRepository = new InMemoryMealRepository();
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     @Override
@@ -40,12 +45,13 @@ public class MealServlet extends HttpServlet {
                     forward = INSERT_OR_EDIT;
                     break;
                 case "add":
+                    title = "Add meal";
                     forward = INSERT_OR_EDIT;
             }
         } else {
             forward = LIST_MEALS;
         }
-
+        request.setAttribute("title", title);
         request.setAttribute("meals", MealsUtil.getMealToList());
         request.getRequestDispatcher(forward).forward(request, response);
     }
@@ -64,7 +70,7 @@ public class MealServlet extends HttpServlet {
             mealRepository.add(meal);
         } else {
             meal.setDateTime(LocalDateTime.parse(request.getParameter("date"), DateTimeFormatter
-                                .ofPattern("yyyy-MM-dd HH:mm")));
+                    .ofPattern("yyyy-MM-dd HH:mm")));
             mealRepository.update(Integer.parseInt(mealId), meal);
         }
         String forward = LIST_MEALS;
